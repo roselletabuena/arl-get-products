@@ -63,3 +63,10 @@ test/types/index.js
 
 # compiled app
 dist
+
+#sam
+
+.env
+samconfig.toml
+template.yaml
+.aws-sam

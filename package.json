@@ -11,6 +11,8 @@
     "start": "npm run build:ts && fastify start -l info dist/app.js",
     "build:ts": "tsc",
     "watch:ts": "tsc -w",
+    "build": "tsc && npm run copy-deps",
+    "copy-deps": "copy package.json dist\\",
     "dev": "npm run build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
     "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js"
   },
@@ -18,11 +20,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^4.26.1",
-    "fastify-plugin": "^4.0.0",
     "@fastify/autoload": "^5.0.0",
     "@fastify/sensible": "^5.0.0",
-    "fastify-cli": "^6.3.0"
+    "@fastify/aws-lambda": "^4.1.0",
+    "fastify": "^4.26.1",
+    "fastify-cli": "^6.3.0",
+    "fastify-plugin": "^4.0.0"
   },
   "devDependencies": {
     "@aws-sdk/client-dynamodb": "^3.637.0",
@@ -30,9 +33,9 @@
     "@types/aws-lambda": "^8.10.145",
     "@types/node": "^20.4.4",
     "c8": "^10.1.2",
-    "ts-node": "^10.4.0",
     "concurrently": "^8.2.2",
     "fastify-tsconfig": "^2.0.0",
+    "ts-node": "^10.4.0",
     "typescript": "^5.2.2"
   }
 }
