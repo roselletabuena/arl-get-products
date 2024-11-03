@@ -20,7 +20,14 @@ const root: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         unmarshall(item)
       ) as Product[];
 
-      return { products };
+      reply
+        .status(200)
+        .headers({
+          "Access-Control-Allow-Origin": "http://localhost:5173",
+          "Access-Control-Allow-Methods": "GET, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        })
+        .send({ products });
     } catch (error) {
       console.error("Error fetching products:", error);
       reply.status(500).send({ error: "Failed to fetch products" });
