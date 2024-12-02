@@ -8,8 +8,8 @@ import { unmarshall } from "@aws-sdk/util-dynamodb";
 const client = new DynamoDBClient(dynamoConfig());
 const dynamodb = DynamoDBDocumentClient.from(client);
 
-const root: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
-  fastify.get("/products", async function (request, reply) {
+const root: FastifyPluginAsync = async (fastify, _): Promise<void> => {
+  fastify.get("/products", async function (_, reply) {
     try {
       const command = new ScanCommand({
         TableName: process.env.TABLE_NAME,
